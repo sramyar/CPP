@@ -2,7 +2,7 @@
 using namespace std;
 
 template<class T>
-T sum(int size, T a[])
+T sum(int size, const T a[])
 {
     T s = 0;
     for (int i=0; i<size; i++)
