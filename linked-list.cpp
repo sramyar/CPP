@@ -82,13 +82,24 @@ class List{
         return true;
     }
 
+    
+
 };
 
+template<class T>
+void printList(Node<T>* cue)
+    {
+        if(cue==nullptr)return;
+        cout << cue->data << ", ";
+        printList(cue->nxtPtr);
+    }
 
-
-
-
-
+template<class T>
+ostream& operator<<(ostream& out, List<T>* l)
+{
+    out << "List of size: " << l->size << endl;
+    return out;
+}
 
 int main(void)
 {
@@ -107,5 +118,8 @@ int main(void)
     a->print();
     a->add(1000);
     a->print();
+    printList(a->head);
+    cout << endl;
+    cout << a;
     return 0;
 }
