@@ -29,6 +29,20 @@ class List{
     int size;
 
     List():head(0),tail(0),size(0){};
+    List(T data[], int n){
+        size = 0;
+        head = tail = nullptr;
+        for(int i=0; i<n; i++){
+            try
+            {
+                add(data[i]);
+            }
+            catch(const std::exception& e)
+            {
+                this->add(NULL);
+            }         
+        }
+    }
 
     T push(T x)
     {
@@ -55,7 +69,7 @@ class List{
 
     void print(void)
     {
-        Node<int>* cue = this->head;
+        Node<T>* cue = this->head;
         while(cue != NULL)
         {
             cout << cue->data << "\t";
@@ -76,10 +90,28 @@ class List{
     bool add(T x)
     {
         Node<T>* u = new Node<T>(x);
-        tail->nxtPtr = u;
-        this->tail = u;
-        if (++size == 1) this->head = u;
+        if (this->size == 0){
+            this->head = u;
+            this->tail = u;
+        }
+        else{
+            tail->nxtPtr = u;
+            this->tail = u;
+        }
+        ++this->size;
         return true;
+    }
+
+    ~List()
+    {
+        cout << "destructor called for " << this;
+        for(tail = head; tail != NULL;){
+            tail = head->nxtPtr;
+            delete head;
+            --size;
+            head = tail;
+        }
+        --size;
     }
 
     
@@ -103,6 +135,16 @@ ostream& operator<<(ostream& out, List<T>* l)
 
 int main(void)
 {
+    int data[] = {1,2,3,4,5};
+    List<int> l(data,9);
+    l.print();
+    cout << &l;
+    char c[] = {'k','i','r','i'};
+    List<char> cl(c,9);
+    cl.print();
+    printList(cl.head);
+    cout << &cl;
+    /*
     List<int>* a = new List<int>();
     a->push(1);
     a->push(2);
@@ -121,5 +163,12 @@ int main(void)
     printList(a->head);
     cout << endl;
     cout << a;
+    a->~List();
+    cout << "printing after deletion:" << endl;
+    printList(a->head);
+    cout << "The other print:" << endl;
+    a->print();
+    cout << a;
+    */
     return 0;
 }
