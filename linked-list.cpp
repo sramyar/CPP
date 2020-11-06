@@ -16,7 +16,7 @@ class Node{
     Node(T d)
     {
         this -> data = d;
-        this -> nxtPtr = NULL;
+        this -> nxtPtr = nullptr;
     }
 };
 
@@ -42,6 +42,28 @@ class List{
                 this->add(NULL);
             }         
         }
+    }
+
+    List(List<T>* l, bool deep = false)
+    {
+        if(deep){
+            Node<T>* cue = l->head;
+            this->head=nullptr;
+            this->tail=nullptr;
+            this->size=0;
+            while(cue != nullptr){
+                add(cue->data);
+                cout << "added: "<< cue->data <<endl;
+                cue = cue->nxtPtr;
+            }
+        }
+        else
+        {
+            this->head = l->head;
+            this->tail = l->tail;
+            this->size = l->size;
+        }
+        
     }
 
     T push(T x)
@@ -140,10 +162,12 @@ int main(void)
     l.print();
     cout << &l;
     char c[] = {'k','i','r','i'};
-    List<char> cl(c,9);
+    List<char> cl(c,4);
     cl.print();
-    printList(cl.head);
     cout << &cl;
+    List<char> cl2(&cl,true);
+    cl2.print();
+    cout << &cl2 << endl;
     /*
     List<int>* a = new List<int>();
     a->push(1);
