@@ -7,18 +7,23 @@ class Graph{
     public:
     int n;
     vector<List<int>> V;
+    vector<List<double>> W;
 
     Graph(int nodes)
     {
         for(int i=0; i< nodes; i++){
-            cout << "Decos here" << endl;
             V.push_back(*new List<int>());
+            W.push_back(*new List<double>());
         }
+
     }
 
-    void addEdge(int i, int j)
+    void addEdge(int i, int j, double w=0)
     {
-        if(!hasEdge(i,j)) V[i].add(j);
+        if(!hasEdge(i,j)) {
+            V[i].add(j);
+            W[i].add(w);
+        }
         else return;
     }
 
