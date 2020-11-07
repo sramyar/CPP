@@ -102,26 +102,30 @@ class List{
 
     bool remove(T element)
     {
+        if(size==0) return false;
         Node<T>* cue = head;
-        while(cue->nxtPtr != nullptr){
-            if(cue == head && cue->data == element){
-                this-> head = cue->nxtPtr;
-                head->nxtPtr = cue->nxtPtr->nxtPtr;
-                return true;
-            }
-            else if(cue->nxtPtr == tail && tail->data == element){
-                tail = cue;
-                tail->nxtPtr = nullptr;
-                return true;
-            }
-            else if(cue->nxtPtr->data == element){
-                cue->nxtPtr = (cue->nxtPtr)->nxtPtr;
+        if(size==1){
+            head = tail = nullptr;
+            --size;
+            return true;
+        }
+        while (cue->nxtPtr != nullptr){
+            if(cue->nxtPtr->data == element){
+                if(cue->nxtPtr == tail){
+                    tail = cue;
+                    tail->nxtPtr = nullptr;
+                }
+                else
+                    cue->nxtPtr = cue->nxtPtr->nxtPtr;
+                --size;
                 return true;
             }
             else
+            {
                 cue = cue->nxtPtr;
+            }
+            
         }
-
         return false;
     }
 
@@ -130,7 +134,7 @@ class List{
         if (size == 0) return NULL;
         T val = head->data;
         this -> head = head->nxtPtr;
-        if( --size == 0) this -> tail = NULL;
+        if( --size == 0) this -> tail = nullptr;
         return val;
     }
 
@@ -159,6 +163,11 @@ class List{
         }
         ++this->size;
         return true;
+    }
+
+    bool isEmpty()
+    {
+        return (head==nullptr && tail==nullptr && size == 0);
     }
 
     ~List()
