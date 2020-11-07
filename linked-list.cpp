@@ -132,6 +132,16 @@ class List{
         return val;
     }
 
+    bool hasElement(T element)
+    {
+        Node<T>* cue = head;
+        while(cue != nullptr){
+            if(cue->data == element) return true;
+            cue = cue->nxtPtr;
+        }
+        return false;
+    }
+
 
 
     bool add(T x)
@@ -190,6 +200,8 @@ int main(void)
     char c[] = {'k','i','r','i'};
     List<char> cl(c,4);
     cl.remove('i');
+    cout << "has element 'k'? " << cl.hasElement('k') << endl;
+    cout << "has element 'a'? " << static_cast<int>(cl.hasElement('a')) << endl;
     cl.print();
     cout << &cl;
     List<char> cl2(&cl,true);
