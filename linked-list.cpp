@@ -105,11 +105,13 @@ class List{
         Node<T>* cue = head;
         while(cue->nxtPtr != nullptr){
             if(cue == head && cue->data == element){
-                head = cue->nxtPtr;
+                this-> head = cue->nxtPtr;
+                head->nxtPtr = cue->nxtPtr->nxtPtr;
                 return true;
             }
             else if(cue->nxtPtr == tail && tail->data == element){
                 tail = cue;
+                tail->nxtPtr = nullptr;
                 return true;
             }
             else if(cue->nxtPtr->data == element){
@@ -190,7 +192,7 @@ ostream& operator<<(ostream& out, List<T>* l)
     return out;
 }
 
-
+/*
 int main(void)
 {
     int data[] = {1,2,3,4,5};
@@ -215,5 +217,7 @@ int main(void)
   
     return 0;
 }
+
+*/
 
 
