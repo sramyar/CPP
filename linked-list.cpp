@@ -168,31 +168,11 @@ int main(void)
     List<char> cl2(&cl,true);
     cl2.print();
     cout << &cl2 << endl;
-    /*
-    List<int>* a = new List<int>();
-    a->push(1);
-    a->push(2);
-    a->push(12);
-    a->print();
-    a->pop();
-    a->print();
-    a->push(121);
-    a->print();
-    a->push(112);
-    a->print();
-    a->remove();
-    a->print();
-    a->add(1000);
-    a->print();
-    printList(a->head);
-    cout << endl;
-    cout << a;
-    a->~List();
-    cout << "printing after deletion:" << endl;
-    printList(a->head);
-    cout << "The other print:" << endl;
-    a->print();
-    cout << a;
-    */
+    cout << "Bytes in a list: " <<sizeof cl2 <<endl;
+    cout << "Bytes in a list of ints: " << sizeof(List<int>) << endl;
+    cout << "Bytes in a list of doubles: " << sizeof(List<double>) << endl;
+    cout << "Bytes in a list of chars: " << sizeof(List<char>) << endl;
+    cout << "Bytes in a list of strings: " << sizeof(List<string>) << endl;
+  
     return 0;
 }
