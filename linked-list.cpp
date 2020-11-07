@@ -100,6 +100,29 @@ class List{
         cout << endl;
     }
 
+    bool remove(T element)
+    {
+        Node<T>* cue = head;
+        while(cue->nxtPtr != nullptr){
+            if(cue == head && cue->data == element){
+                head = cue->nxtPtr;
+                return true;
+            }
+            else if(cue->nxtPtr == tail && tail->data == element){
+                tail = cue;
+                return true;
+            }
+            else if(cue->nxtPtr->data == element){
+                cue->nxtPtr = (cue->nxtPtr)->nxtPtr;
+                return true;
+            }
+            else
+                cue = cue->nxtPtr;
+        }
+
+        return false;
+    }
+
     T remove(void)
     {
         if (size == 0) return NULL;
@@ -108,6 +131,8 @@ class List{
         if( --size == 0) this -> tail = NULL;
         return val;
     }
+
+
 
     bool add(T x)
     {
@@ -155,6 +180,7 @@ ostream& operator<<(ostream& out, List<T>* l)
     return out;
 }
 
+
 int main(void)
 {
     int data[] = {1,2,3,4,5};
@@ -163,6 +189,7 @@ int main(void)
     cout << &l;
     char c[] = {'k','i','r','i'};
     List<char> cl(c,4);
+    cl.remove('i');
     cl.print();
     cout << &cl;
     List<char> cl2(&cl,true);
@@ -176,3 +203,5 @@ int main(void)
   
     return 0;
 }
+
+
