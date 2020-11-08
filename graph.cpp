@@ -43,14 +43,14 @@ class Graph{
         return &V[i];
     }
 
-    List<int>* inEdges(int j)
+    List<int> inEdges(int j)
     {
         List<int>out;
         for(int i=0; i<n; i++){
             if(this->hasEdge(i,j)) out.add(i);
         }
 
-        return &out;
+        return out;
     }
 
     void print(void)
