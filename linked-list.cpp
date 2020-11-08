@@ -161,13 +161,13 @@ class List{
         return -1;
     }
 
-    T getElement(int index)
+    Node<T>* getElement(int index)
     {
         Node<T>* cue = head;
         for(int i=0; i<index; i++){
             cue = cue->nxtPtr;
         }
-        return cue->data;
+        return cue;
     }
 
     bool add(T x)
@@ -192,7 +192,7 @@ class List{
 
     Node<T>* findMinElement()
     {
-        T min;
+        T min = head->data;
         Node<T>* Min = nullptr;
         Node<T>* cue = head;
         while(cue != nullptr){
@@ -203,6 +203,13 @@ class List{
             cue = cue->nxtPtr;
         }
         return cue;
+    }
+
+    int minElementIndex()
+    {
+        Node<T>* min = this->findMinElement();
+        int index = this->getIndex(min->data);
+        return index;
     }
 
     ~List()
