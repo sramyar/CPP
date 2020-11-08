@@ -148,7 +148,27 @@ class List{
         return false;
     }
 
+    int getIndex(T target)
+    {
+        Node<T>* cue = head;
+        int index = 0;
+        while (cue != nullptr){
+            if(cue->data == target) return index;
+            ++index;
+            cue = cue->nxtPtr;
+        }
 
+        return -1;
+    }
+
+    T getElement(int index)
+    {
+        Node<T>* cue = head;
+        for(int i=0; i<index; i++){
+            cue = cue->nxtPtr;
+        }
+        return cue->data;
+    }
 
     bool add(T x)
     {
@@ -168,6 +188,21 @@ class List{
     bool isEmpty()
     {
         return (head==nullptr && tail==nullptr && size == 0);
+    }
+
+    Node<T>* findMinElement()
+    {
+        T min;
+        Node<T>* Min = nullptr;
+        Node<T>* cue = head;
+        while(cue != nullptr){
+            if(cue->data < min) {
+                min = cue->data;
+                Min = cue;
+            }
+            cue = cue->nxtPtr;
+        }
+        return cue;
     }
 
     ~List()
