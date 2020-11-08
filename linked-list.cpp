@@ -99,7 +99,7 @@ class List{
         }
         cout << endl;
     }
-
+    /*
     bool remove(T element)
     {
         if(size==0) return false;
@@ -128,16 +128,7 @@ class List{
         }
         return false;
     }
-
-    T remove(void)
-    {
-        if (size == 0) return NULL;
-        T val = head->data;
-        this -> head = head->nxtPtr;
-        if( --size == 0) this -> tail = nullptr;
-        return val;
-    }
-
+    */
     bool hasElement(T element)
     {
         Node<T>* cue = head;
@@ -170,6 +161,41 @@ class List{
         return cue;
     }
 
+    T remove(void)
+    {
+        if (size == 0) return NULL;
+        T val = head->data;
+        this -> head = head->nxtPtr;
+        if( --size == 0) this -> tail = nullptr;
+        return val;
+    }
+
+    bool remove(int idx)
+    {
+        Node<T>* targetNode = getElement(idx);
+        if(size==1 && idx==0){
+            head = tail = nullptr;
+            --size;
+            return true;
+        }
+        if(idx == 0 && size>1){
+            head = targetNode->nxtPtr;
+            --size;
+            return true;
+        }
+
+        Node<T>* cue = head;
+        for(int i=0; i < idx-1; i++){
+            cue = cue->nxtPtr;
+        }
+        if(cue->nxtPtr==tail) tail = cue;
+        cue -> nxtPtr = cue ->nxtPtr ->nxtPtr;
+        
+        --size;
+        return true;
+        
+    }
+
     bool add(T x)
     {
         Node<T>* u = new Node<T>(x);
@@ -193,7 +219,7 @@ class List{
     Node<T>* findMinElement()
     {
         T min = head->data;
-        Node<T>* Min = nullptr;
+        Node<T>* Min = head;
         Node<T>* cue = head;
         while(cue != nullptr){
             if(cue->data < min) {
@@ -202,7 +228,7 @@ class List{
             }
             cue = cue->nxtPtr;
         }
-        return cue;
+        return Min;
     }
 
     int minElementIndex()
@@ -211,7 +237,7 @@ class List{
         int index = this->getIndex(min->data);
         return index;
     }
-
+    /*
     ~List()
     {
         cout << "destructor called for " << this;
@@ -223,6 +249,7 @@ class List{
         }
         --size;
     }
+    */
 
     
 
