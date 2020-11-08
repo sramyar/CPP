@@ -84,6 +84,8 @@ ostream& operator<<(ostream& out, Graph const &G)
     return out;
 }
 
+
+/*
 int main(void)
 {
 
@@ -96,7 +98,7 @@ int main(void)
     g.print();
     g.addEdge(1,2);
     //g.print();
-    return 0;
-    
-    
+    return 0;   
 }
+
+*/
