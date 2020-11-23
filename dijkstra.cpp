@@ -81,7 +81,7 @@ void dijkstra(Graph* const G, int start, int end)
     Node<int>* node;
     while (!(closed.hasElement(end)) || !open.isEmpty()){
         node = findMin(&open, &weights);
-        open.print();
+        weights.print();
         cout << "vertex: " << node->data << " is min" << endl;
         processVertex(G, node, &closed, &open, &weights);
         //cout << "Vertex: " << node->data << "\tcost: " << getWeight(node, &open, &weights) << endl;
