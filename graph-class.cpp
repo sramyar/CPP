@@ -15,7 +15,7 @@ class Graph{
         adj = vector<vector<pair<int,double>>>(num);
     }
 
-    void addEdge(int i, int j, double w = 0)
+    void addEdge(int i, int j, double w =0)
     {
         adj[i].push_back(make_pair(j,w));
     }
@@ -63,8 +63,14 @@ class Graph{
             }
         return out;
     }
+
+    ~Graph()
+    {
+        cout << "Graph de-structor called" << endl; 
+    }
 };
 
+/*
 int main(void)
 {
     Graph g(4);
@@ -75,3 +81,5 @@ int main(void)
     cout << g;
     return 0;
 }
+
+*/
