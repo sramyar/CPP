@@ -39,18 +39,18 @@ class Graph{
         return false;
     }
 
-    void outEdges(int i, vector<pair<int,double>>& edges)
+    void outEdges(int i, vector<int>& edges)
     {
         for(auto iter: adj[i]){
-            edges.push_back(iter);
+            edges.push_back(iter.first);
         }
     }
 
-    void inEdges(int i, vector<pair<int,double>>& edges)
+    void inEdges(int i, vector<int>& edges)
     {
         for(auto iter: adj){
             for(auto iter2: iter){
-                if(iter2.first == i) edges.push_back(iter2);
+                if(iter2.first == i) edges.push_back(iter2.first);
             }
         }
     }
