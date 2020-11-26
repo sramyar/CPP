@@ -1,4 +1,5 @@
 #include<vector>
+#include<iostream>
 using namespace std;
 
 
@@ -16,13 +17,15 @@ class Graph{
         w = new double*[num];
         c = new int*[num];
         for(int i=0; i<num; i++){
-            v[i] = new bool[n];
-            c[i] = new int[n];
-            w[i] = new double[n];
+            v[i] = new bool[num];
+            c[i] = new int[num];
+            w[i] = new double[num];
         }
     }
     //destructor
-    ~Graph();
+    ~Graph(){
+        cout << "graph destructor called" << endl;
+    }
 
     void addEdge(int i, int j)
     {
@@ -56,8 +59,3 @@ class Graph{
 
 
 };
-
-int main(void)
-{
-    return 0;
-}
